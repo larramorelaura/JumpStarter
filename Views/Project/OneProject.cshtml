@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "One Project";
+}
+@model JumpStarter.Models.ViewModel
+
+    @await Html.PartialAsync("../Shared/_NavBar")
+    <div>
+        <h1 class="text-center">@Model.Project.Title</h1>
+        <p class="text-center">@Model.Project.Description</p>
+        <div class='d-flex justify-content-between'>
+            <div>
+                <h2>US$ @Model.TotalDonations</h2>
+                <p>Pledged of US$ @Model.Project.Goal goal</p>
+                <progress class="progress-bar" value="@Model.TotalDonations" max="@Model.Project.Goal">
+
+                </progress>
+                <h2>@Model.SupportersCount</h2>
+                <p>Supporters</p>
+                <h2>Ends: @Model.Project.EndDate.ToString("MMM dd, yyyy")</h2>
+                @if(@Model.UntilEnd > TimeSpan.Zero){
+                <p> @Model.UntilEnd.ToString(@"dd") days @Model.UntilEnd.ToString(@"hh") hours @Model.UntilEnd.ToString(@"mm") minute remaining</p>}
+                else{<p>This has expired</p>}
+            </div>
+            <div>
+                @if(Context.Session.GetInt32("UserId")!=@Model.Project.CreatorId && @Model.Project.EndDate > DateTime.Now){
+                <form asp-controller="Project" asp-action="SupportProject" asp-route-projectId="@Model.Project.ProjectId">
+                    <h2>Support this Project</h2>
+                    <input asp-for="@Model.UserAndProject.Donations"/>
+                    <input type="submit" value="Support"/>
+                </form>
+                }
+            </div>
+        </div>
+    </div>

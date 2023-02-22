@@ -1,0 +1,40 @@
+
+@model User
+
+<div class="text-backgrounds">
+    <h1>Register</h1>
+    <form asp-action="CreateUser" method="post" class="form">
+        <div class="mb-3 d-flex justify-content-between">
+            <label>First Name:</label>
+            <input asp-for="FirstName">
+            
+        </div>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+        <div class="mb-3 d-flex justify-content-between">
+            <label>Last Name:</label>
+            <input asp-for="LastName">
+            
+        </div>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <label>Email:</label>
+            <input asp-for="Email">
+            
+        </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="mb-3 d-flex justify-content-between">
+            <label>Password:</label>
+            <input asp-for="Password">
+            
+        </div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="mb-3 d-flex justify-content-between">
+            <label>Confirm Password:</label>
+            <input asp-for="PasswordConfirm">
+            
+        </div>
+        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+        <input class="bg-success text-white" type="submit" value="Register">
+    </form>
+</div>

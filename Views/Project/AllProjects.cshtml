@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<JumpStarter.Models.Project>
+
+    @await Html.PartialAsync("../Shared/_NavBar")
+    <div class="gap-5 d-flex">
+        <table class="table table-striped">
+            <thead>
+                <th>Project Title</th>
+                <th>Total Funding</th>
+                <th>Creator</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                @foreach(JumpStarter.Models.Project p in Model)
+                {
+                    <tr>
+                        <td>@p.Title</td>
+                        <td>@p.TotalDonations</td>
+                        <td>@p.Creator.FirstName @p.Creator.LastName</td>
+                        <td class="d-flex gap-3">
+                            <a asp-controller="Project" asp-action="OneProject" asp-route-projectId="@p.ProjectId"><button>View</button></a>
+                            @if(@Context.Session.GetInt32("UserId")==p.Creator.UserId)
+                        {
+                            <form asp-controller="Project" asp-action="DeleteProject" asp-route-projectId="@p.ProjectId">
+                                <button>Delete</button>
+                            </form>
+                        }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

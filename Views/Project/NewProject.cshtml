@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Add a Project";
+}
+
+@model JumpStarter.Models.Project 
+
+@await Html.PartialAsync("../Shared/_NavBar")
+<div >
+    <form asp-controller="Project" asp-action="CreateProject" method="post">
+        <div class="mb-3 d-flex justify-content-start gap-3">
+            <label asp-for="Title"></label><span asp-validation-for="Title" class="text-danger"></span>
+            <input asp-for="Title"/>
+        </div>
+        <div class="mb-3 d-flex justify-content-start gap-3">
+            <label asp-for="Goal"></label>
+            <span asp-validation-for="Goal" class="text-danger"></span>
+            <input asp-for="Goal"/>
+        </div>
+        <div class="mb-3 d-flex justify-content-start gap-3">
+            <label asp-for="EndDate"></label>
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+            <input asp-for="EndDate" type="date"/>
+        </div>
+        <div class="mb-3 d-flex justify-content-start gap-3">
+            <label asp-for="Description"></label>
+            <span asp-validation-for="Description" class="text-danger"></span>
+            <textarea asp-for="Description"></textarea>
+        </div>
+        <input type="submit" value="Get Started"/>
+    </form>
+</div>
